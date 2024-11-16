@@ -17,7 +17,7 @@
 			"@pc/*": [
 				"./src/pc/*"
 			],
-			"@mobile/*": [
+			"@m/*": [
 				"./src/mobile/*"
 			],
 			"vue": [

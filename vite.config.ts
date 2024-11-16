@@ -50,7 +50,7 @@ export default defineConfig({
 				replacement: resolve(__dirname, './src/pc')
 			},
 			{
-				find: '@mobile',
+				find: '@m',
 				replacement: resolve(__dirname, './src/mobile')
 			}
 		]

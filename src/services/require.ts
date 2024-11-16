@@ -8,7 +8,7 @@ import type { IRequestConfig, IResponseConfig, IResponseData } from './interface
 
 import { createAxiosConfig } from '@/config/axios.config';
 import router from '@/router';
-import useUserStore from '@/stores/user.ts';
+import useUserStore from '@/stores/user.store';
 import { getLocalStorage } from '@/utils';
 import { Message } from '@arco-design/web-vue';
 

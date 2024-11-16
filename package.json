@@ -18,14 +18,8 @@
 	},
 	"dependencies": {
 		"@arco-plugins/vite-vue": "^1.4.5",
-		"@codemirror/lang-javascript": "^6.2.1",
-		"@codemirror/lang-json": "^6.0.1",
-		"@codemirror/lang-markdown": "^6.2.4",
-		"@codemirror/language-data": "^6.4.0",
-		"@codemirror/theme-one-dark": "^6.1.2",
 		"@types/node": "^20.11.30",
 		"axios": "^1.6.7",
-		"codemirror": "^6.0.1",
 		"dayjs": "^1.11.10",
 		"echarts": "^5.5.0",
 		"normalize.css": "^8.0.1",
@@ -36,7 +30,6 @@
 		"socket.io-client": "^4.7.5",
 		"vant": "^4.9.1",
 		"vue": "^3.3.11",
-		"vue-codemirror6": "^1.2.5",
 		"vue-dompurify-html": "^5.0.1",
 		"vue-router": "^4.2.5",
 		"websocket": "^1.0.34"
@@ -74,8 +67,5 @@
 		"vite-plugin-eslint": "^1.8.1",
 		"vue-eslint-parser": "^9.4.0",
 		"vue-tsc": "^1.8.25"
-	},
-	"volta": {
-		"node": "20.12.0"
 	}
 }

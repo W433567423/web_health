@@ -53,18 +53,18 @@ class HttpRequest {
 		 * 服务器换返回信息 -> [拦截统一处理] -> 客户端JS获取到信息
 		 */
 		this.service.interceptors.response.use(
-			(res: AxiosResponse<IResponseData, any>): AxiosResponse['data'] => {
+			(res: AxiosResponse<IResponseData, IResponseConfig>): AxiosResponse['data'] => {
 				const { data } = res;
 
 				// code处理
-				if (data.code) {
+				if (typeof data.code === 'number') {
 					this.handleCode(data.code, data.msg, (res.config as IResponseConfig).passLogin);
 				} else {
 					return Promise.reject(new Error('Response Error! 没有code!'));
 				}
 
 				// originData参数用来获取原始响应
-				if ((res.config as IResponseConfig).originData) return data;
+				if ((res.config as IResponseConfig).originData !== null) return data;
 				else return data.data;
 			},
 			async (error: AxiosError) => {
@@ -84,7 +84,7 @@ class HttpRequest {
 		);
 	}
 
-	handleCode(code: number, msg: any, passLogin = false): void {
+	handleCode(code: number, msg: string, passLogin = false): void {
 		if (!passLogin && code === 401) {
 			// 登录状态已过期.处理路由重定向
 			console.log('登录状态已过期');
@@ -95,29 +95,29 @@ class HttpRequest {
 			});
 		} else if (code > 299) {
 			Message.error({
-				content: typeof msg === 'string' ? msg : msg?.join('且')
+				content: msg
 			});
 		}
 	}
 
 	// 常用方法封装
-	async get<T = any>(url: string, config?: IRequestConfig): Promise<T> {
+	async get<T>(url: string, config?: IRequestConfig): Promise<T> {
 		return await this.service.request({ url, method: 'GET', ...config });
 	}
 
-	async post<T = any>(url: string, config?: IRequestConfig): Promise<T> {
+	async post<T>(url: string, config?: IRequestConfig): Promise<T> {
 		return await this.service.request({ url, method: 'POST', ...config });
 	}
 
-	async put<T = any>(url: string, config?: IRequestConfig): Promise<T> {
+	async put<T>(url: string, config?: IRequestConfig): Promise<T> {
 		return await this.service.request({ url, method: 'PUT', ...config });
 	}
 
-	async patch<T = any>(url: string, config?: IRequestConfig): Promise<T> {
+	async patch<T>(url: string, config?: IRequestConfig): Promise<T> {
 		return await this.service.request({ url, method: 'PATCH', ...config });
 	}
 
-	async delete<T = any>(url: string, config?: IRequestConfig): Promise<T> {
+	async delete<T>(url: string, config?: IRequestConfig): Promise<T> {
 		return await this.service.request({ url, method: 'DELETE', ...config });
 	}
 }

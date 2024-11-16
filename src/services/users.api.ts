@@ -13,7 +13,7 @@ export const postUserRegistry = async (data: IUserLoginForm) => {
 };
 
 // 忘记密码接口
-export const postUserForgetpass_word = async (data: IForgetLoginForm) => {
+export const postUserForgetPassWord = async (data: IForgetLoginForm) => {
 	return await request.post(baseUrl + `/forget/pass_word`, { data });
 };
 

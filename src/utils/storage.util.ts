@@ -9,8 +9,8 @@ export const getLocalStorage = (key: string) => {
 };
 
 // 设置本地缓存
-export const setLocalStorage = (key: string, value: any) => {
-	window.localStorage.setItem(key, JSON.stringify(value));
+export const setLocalStorage = (key: string, value: string) => {
+	window.localStorage.setItem(key, value);
 };
 
 // 清除本地缓存

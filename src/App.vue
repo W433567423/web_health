@@ -5,14 +5,14 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 // const userStore = useUserStore();
 // userStore.init();
-onMounted(() => {
+onMounted(async () => {
 	if (isMobile()) {
 		console.log('手机端');
-		router.replace('/m');
+		await router.replace('/m');
 	} else {
 		console.log('pc端');
 		alert('禁止PC端访问，请使用手机端访问');
-		router.replace('/pc');
+		await router.replace('/pc');
 	}
 });
 </script>

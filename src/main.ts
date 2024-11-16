@@ -15,5 +15,5 @@ app.use(VueDOMPurifyHTML);
 app.use(Lazyload);
 app.use(Notify);
 // app.use(ArcoVue);
-app.use(ArcoVueIcon as any);
+app.use(ArcoVueIcon);
 app.mount('#app');

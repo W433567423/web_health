@@ -3,25 +3,21 @@ interface IUser {
 	createTime: string;
 	updateTime: string;
 	id: number;
-	username: string;
-	password: string;
+	user_name: string;
+	pass_word: string;
 	phone: string | null | undefined;
 	email: string;
-	peace: string | null | undefined;
-}
-interface IUserForm {
-	username: string;
-	valid: string;
 }
 interface IUserLoginForm extends IUserForm {
-	password: string;
-	emailValid: string;
-	emailNum: string;
+	user_name: string;
+	pass_word: string;
+	code_valid: string;
 }
 interface IForgetLoginForm {
+	user_name: string;
 	emailNum: string;
-	emailValid: string;
-	newPassword: string;
+	email_valid: string;
+	new_pass_word: string;
 }
 /** ************** end ******************/
 

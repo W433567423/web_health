@@ -45,6 +45,7 @@ module.exports = {
 		'@typescript-eslint/no-misused-promises': 0,
 		// 允许any
 		'@typescript-eslint/no-explicit-any': 0,
-		'@typescript-eslint/prefer-nullish-coalescing': 0
+		'@typescript-eslint/prefer-nullish-coalescing': 0,
+		'@typescript-eslint/naming-convention': 'snake_case'
 	}
 };

@@ -11,8 +11,8 @@ export default defineStore('user', {
 			createTime: '',
 			updateTime: '',
 			id: 0,
-			username: '',
-			password: '',
+			user_name: '',
+			pass_word: '',
 			phone: '',
 			email: '',
 			peace: ''

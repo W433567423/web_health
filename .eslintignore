@@ -1,0 +1,6 @@
+!src/**/*.ts
+!src/**/*.js
+!src/**/*.vue
+
+src/vite-env.d.ts
+vite.config.ts

@@ -1,4 +1,3 @@
-import { mapListProjects, mapRunStatus } from '@/utils/handleMap.utils';
 import { getLocalStorage, setLocalStorage } from '@/utils/storage.util';
 
 const isMobile = () => {
@@ -7,4 +6,4 @@ const isMobile = () => {
 	);
 };
 
-export { getLocalStorage, isMobile, mapListProjects, mapRunStatus, setLocalStorage };
+export { getLocalStorage, isMobile, setLocalStorage };

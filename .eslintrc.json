@@ -17,14 +17,14 @@
 		"project": [
 			"./tsconfig.json",
 			"./tsconfig.node.json",
-			"./commitlint.config.js",
+			"./commitlint.config.json",
 			"./.prettierrc",
 			"./uno.config.ts"
 		],
 		"parser": "@typescript-eslint/parser",
 		"extraFileExtensions": [
 			".vue"
-		] // 新增
+		]
 	},
 	"root": true,
 	"plugins": [

@@ -1,5 +1,5 @@
 import request from '@/services/require.ts';
-import type { IForgetLoginForm, IUser, IUserLoginForm } from './interfaces/users';
+import type { IForgetLoginForm, IUser, IUserLoginForm, IUserRegistryForm } from './interfaces/users';
 
 const baseUrl = '/user';
 // 登录接口
@@ -8,7 +8,7 @@ export const postUserLogin = async (data: IUserLoginForm) => {
 };
 
 // 注册接口
-export const postUserRegistry = async (data: IUserLoginForm) => {
+export const postUserRegistry = async (data: IUserRegistryForm) => {
 	return await request.post<{ token: string; user: IUser }>(baseUrl + `/registry`, { data });
 };
 

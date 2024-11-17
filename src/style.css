@@ -1,6 +1,7 @@
 @import 'normalize.css';
 @import '@arco-design/web-vue/dist/arco.css';
 @import 'assets/styles/index.less';
+@import 'vant/lib/index.css';
 
 /*@font-face {*/
 /*    font-family: "Josefin Sansl";*/

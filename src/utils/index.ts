@@ -4,4 +4,8 @@ const isMobile = (): boolean => {
 	return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 };
 
-export { getLocalStorage, isMobile, setLocalStorage };
+const sleep = async (ms: number) => {
+	return await new Promise((resolve) => setTimeout(resolve, ms));
+};
+
+export { getLocalStorage, isMobile, setLocalStorage, sleep };

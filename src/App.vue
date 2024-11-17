@@ -1,18 +1,26 @@
 <script lang="ts" setup>
-import { isMobile } from '@/utils';
+import { isMobile, sleep } from '@/utils';
 import { onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
+const route = useRoute();
 const router = useRouter();
 // const userStore = useUserStore();
 // userStore.init();
 onMounted(async () => {
+	// 等待300ms
+	await sleep(300);
 	if (isMobile()) {
 		console.log('手机端');
-		await router.replace('/m');
+		// 如果是已/m开头的路径，就不用跳转了
+		if (!route.fullPath.startsWith('/m')) {
+			await router.replace('/m');
+		}
 	} else {
-		console.log('pc端');
-		alert('禁止PC端访问，请使用手机端访问');
-		await router.replace('/pc');
+		console.log('PC端');
+		// 如果是已/pc开头的路径，就不用跳转了
+		if (!route.path.startsWith('/pc')) {
+			// await router.replace('/pc');
+		}
 	}
 });
 </script>

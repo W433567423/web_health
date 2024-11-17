@@ -1,17 +1,22 @@
+import MLoginPage from '@m/pages/LoginPage.vue';
+import PCLoginPage from '@pc/pages/LoginPage.vue';
 import { createRouter, createWebHashHistory, type RouteRecordRaw } from 'vue-router';
-
 const routes: RouteRecordRaw[] = [
 	// pc
 	{
 		path: '/pc',
-		// component: async () => await import('@/views/index.vue'),
+		component: PCLoginPage,
 		children: []
 	},
 	// Mobile
 	{
 		path: '/m',
-		component: async () => await import('@m/pages/Login/index.vue'),
-		children: []
+		component: MLoginPage,
+		children: [
+			{ path: '/home', component: async () => await import('@m/pages/HomePage.vue') },
+			{ path: '/about', component: async () => await import('@m/pages/AboutPage.vue') }
+			// { path: '/m/home', component: async () => await import('@m/pages/AboutPage.vue') }
+		]
 	}
 ];
 

@@ -8,17 +8,23 @@ interface IUser {
 	phone: string | null | undefined;
 	email: string;
 }
-interface IUserLoginForm extends IUserForm {
-	user_name: string;
-	pass_word: string;
-	code_valid: string;
+interface IUserLoginForm {
+	username: string;
+	password: string;
+	valid: string;
+}
+interface IUserRegistryForm {
+	username: string;
+	password: string;
+	email: string;
+	emailValid: number;
 }
 interface IForgetLoginForm {
-	user_name: string;
+	username: string;
 	emailNum: string;
-	email_valid: string;
-	new_pass_word: string;
+	emailValid: string;
+	password: string;
 }
 /** ************** end ******************/
 
-export type { IForgetLoginForm, IUser, IUserLoginForm };
+export type { IForgetLoginForm, IUser, IUserLoginForm, IUserRegistryForm };

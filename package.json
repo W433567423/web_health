@@ -7,13 +7,13 @@
 	"author": "tutu",
 	"license": "UNLICENSED",
 	"scripts": {
-		"dev": "vite",
 		"build": "vue-tsc && vite build",
-		"preview": "vite preview",
-		"lint": "eslint --ext .js,.ts,.vue src",
-		"fix": "eslint --ext .js,.ts,.vue --fix src",
-		"prepare": "npx prettier --write --end-of-line lf src && husky install",
 		"commitlint": "commitlint -e -V",
+		"dev": "vite",
+		"fix:lf": "npx prettier --write --end-of-line lf src",
+		"prepare": "husky install&& npx run fix:lf",
+		"lint": "eslint --ext .js,.ts,.vue src",
+		"preview": "vite preview",
 		"test": "npm run lint"
 	},
 	"dependencies": {

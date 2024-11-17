@@ -1,11 +1,42 @@
 <script lang="ts" setup>
 import { isMobile, sleep } from '@/utils';
-import { onMounted } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 const route = useRoute();
 const router = useRouter();
 // const userStore = useUserStore();
 // userStore.init();
+
+const notLogin = computed(() => !route.path.includes('/login'));
+const activePage = ref('home');
+const tabList = [
+	{
+		name: 'm_home',
+		icon: 'home-o',
+		text: '首页'
+	},
+	// {
+	// 	name: 'm_search',
+	// 	icon: 'search',
+	// 	text: '搜索',
+	// },
+	// {
+	// 	name: 'm_friends',
+	// 	icon: 'friends-o',
+	// 	text: '朋友',
+	// },
+	{
+		name: 'm_about',
+		icon: 'manager-o',
+		text: '我的'
+	}
+];
+
+const changeTabAction = (name: string) => {
+	activePage.value = name;
+	router.push({ name });
+};
+
 onMounted(async () => {
 	// 等待300ms
 	await sleep(300);
@@ -27,6 +58,20 @@ onMounted(async () => {
 
 <template>
 	<router-view />
+	<van-tabbar v-model="activePage" v-if="notLogin">
+		<van-tabbar-item
+			:icon="e.icon"
+			v-for="(e, i) in tabList"
+			@click="changeTabAction(e.name)"
+			:key="i"
+			:name="e.name">
+			首页
+		</van-tabbar-item>
+		<!-- <van-tabbar-item icon="search">标签</van-tabbar-item>
+		<van-tabbar-item icon="friends-o">标签</van-tabbar-item>
+		<van-tabbar-item icon="setting-o">标签</van-tabbar-item> -->
+		<!-- <van-tabbar-item icon="manager-o">我的</van-tabbar-item> -->
+	</van-tabbar>
 </template>
 
 <style lang="less" scoped></style>

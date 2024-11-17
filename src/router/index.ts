@@ -13,8 +13,8 @@ const routes: RouteRecordRaw[] = [
 		redirect: '/m/login',
 		children: [
 			{ path: 'login', component: MLoginPage },
-			{ path: 'home', component: async () => await import('@m/pages/HomePage.vue') },
-			{ path: 'about', component: async () => await import('@m/pages/AboutPage.vue') }
+			{ path: 'home', name: 'm_home', component: async () => await import('@m/pages/HomePage.vue') },
+			{ path: 'about', name: 'm_about', component: async () => await import('@m/pages/AboutPage.vue') }
 			// { path: '/m/home', component: async () => await import('@m/pages/AboutPage.vue') }
 		]
 	}

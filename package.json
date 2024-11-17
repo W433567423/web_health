@@ -10,6 +10,7 @@
 		"build": "vue-tsc && vite build",
 		"commitlint": "commitlint -e -V",
 		"dev": "vite",
+		"fix": "eslint --ext .js,.ts --fix src && npx run fix:lf",
 		"fix:lf": "npx prettier --write --end-of-line lf src",
 		"prepare": "husky install&& npx run fix:lf",
 		"lint": "eslint --ext .js,.ts,.vue src",

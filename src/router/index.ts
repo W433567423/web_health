@@ -5,16 +5,16 @@ const routes: RouteRecordRaw[] = [
 	// pc
 	{
 		path: '/pc',
-		component: PCLoginPage,
-		children: []
+		children: [{ path: 'login', component: PCLoginPage }]
 	},
 	// Mobile
 	{
 		path: '/m',
-		component: MLoginPage,
+		redirect: '/m/login',
 		children: [
-			{ path: '/home', component: async () => await import('@m/pages/HomePage.vue') },
-			{ path: '/about', component: async () => await import('@m/pages/AboutPage.vue') }
+			{ path: 'login', component: MLoginPage },
+			{ path: 'home', component: async () => await import('@m/pages/HomePage.vue') },
+			{ path: 'about', component: async () => await import('@m/pages/AboutPage.vue') }
 			// { path: '/m/home', component: async () => await import('@m/pages/AboutPage.vue') }
 		]
 	}

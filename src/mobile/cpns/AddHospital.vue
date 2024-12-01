@@ -25,17 +25,26 @@
 					:rules="[
 						{ required: true, message: '请输入医院级别', trigger: ['onBlur', 'onChange', 'onSubmit'] }
 					]"
-					@click="showPicker = true" />
+					@click="showLevelPicker = true" />
+				<van-popup v-model:show="showLevelPicker" round position="bottom">
+					<van-picker
+						:columns="hospitalLevel"
+						@cancel="showLevelPicker = false"
+						@confirm="chooseLevelAction" />
+				</van-popup>
 				<van-field
-					v-model="addHospitalForm.level"
+					v-model="addHospitalForm.nature"
 					is-link
 					readonly
 					label="医院性质"
 					placeholder="请输入医院性质"
-					@click="showPicker = true" />
+					@click="showNaturePicker = true" />
 
-				<van-popup v-model:show="showPicker" round position="bottom">
-					<van-picker :columns="hospitalLevel" @cancel="showPicker = false" @confirm="chooseLevelAction" />
+				<van-popup v-model:show="showNaturePicker" round position="bottom">
+					<van-picker
+						:columns="hospitalNature"
+						@cancel="showNaturePicker = false"
+						@confirm="chooseNatureAction" />
 				</van-popup>
 				<van-field
 					v-model="address"
@@ -54,7 +63,9 @@
 						:options="options"
 						@close="show = false" />
 				</van-popup>
-				<van-button block type="primary" @click="addHospitalAction">添加医院</van-button>
+				<van-button round block type="primary" native-type="submit" @click="addHospitalAction">
+					添加医院
+				</van-button>
 			</van-space>
 		</van-form>
 	</div>
@@ -63,12 +74,14 @@
 <script lang="ts" setup>
 import { addHospital } from '@/services/hospital.api';
 import { type IHospital } from '@/services/interfaces/hospital';
+import { getAddressFromCode } from '@/utils';
 import { useCascaderAreaData } from '@vant/area-data';
-import { type PickerColumn, type PickerOption } from 'vant';
+import { showNotify, type PickerColumn, type PickerOption } from 'vant';
 import { computed, ref } from 'vue';
 
 const show = ref(false);
-const showPicker = ref(false);
+const showNaturePicker = ref(false);
+const showLevelPicker = ref(false);
 const options = useCascaderAreaData();
 
 const addHospitalForm = ref<IHospital>({
@@ -76,21 +89,14 @@ const addHospitalForm = ref<IHospital>({
 	addressCode: '441923',
 	alias: '',
 	level: '社区卫生所',
-	nature: ''
+	nature: '未知'
 });
 const emits = defineEmits(['addHospitalEmit']);
 const address = computed(() => {
 	if (addHospitalForm.value.addressCode === '') {
 		return '';
 	} else {
-		const province = options.find(
-			(item) => item.value === addHospitalForm.value.addressCode.slice(0, 2).padEnd(6, '0')
-		);
-		const city = province?.children?.find(
-			(item) => item.value === addHospitalForm.value.addressCode.slice(0, 4).padEnd(6, '0')
-		);
-		const area = city?.children?.find((item) => item.value === addHospitalForm.value.addressCode);
-		return `${province?.text} ${city?.text} ${area?.text}`;
+		return getAddressFromCode(addHospitalForm.value.addressCode);
 	}
 });
 const hospitalLevel: Array<PickerColumn | PickerOption> = [
@@ -139,14 +145,33 @@ const hospitalLevel: Array<PickerColumn | PickerOption> = [
 		value: '12'
 	}
 ];
+const hospitalNature = [
+	{
+		text: '未知',
+		value: ''
+	},
+	{
+		text: '公立',
+		value: '1'
+	},
+	{
+		text: '私立',
+		value: '2'
+	}
+];
 
 const chooseLevelAction = ({ selectedOptions }: { selectedOptions: PickerOption[] }) => {
 	addHospitalForm.value.level = selectedOptions[0].text as string;
-	showPicker.value = false;
+	showLevelPicker.value = false;
+};
+const chooseNatureAction = ({ selectedOptions }: { selectedOptions: PickerOption[] }) => {
+	addHospitalForm.value.nature = selectedOptions[0].text as string;
+	showNaturePicker.value = false;
 };
 const addHospitalAction = async () => {
-	console.log('addHospitalAction', addHospitalForm.value);
+	console.log('🚀 ~ addHospitalAction ~ addHospitalForm.value:', addHospitalForm.value);
 	const res = await addHospital(addHospitalForm.value);
+	showNotify({ type: 'success', message: '医院增加成功', duration: 1000 });
 	emits('addHospitalEmit', res);
 };
 </script>

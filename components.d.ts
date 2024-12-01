@@ -14,7 +14,10 @@ declare module 'vue' {
     VanCell: typeof import('vant/es')['Cell']
     VanCollapse: typeof import('vant/es')['Collapse']
     VanCollapseItem: typeof import('vant/es')['CollapseItem']
+    VanDivider: typeof import('vant/es')['Divider']
+    VanEmpty: typeof import('vant/es')['Empty']
     VanField: typeof import('vant/es')['Field']
+    VanFloatingPanel: typeof import('vant/es')['FloatingPanel']
     VanForm: typeof import('vant/es')['Form']
     VanList: typeof import('vant/es')['List']
     VanPicker: typeof import('vant/es')['Picker']
@@ -24,5 +27,6 @@ declare module 'vue' {
     VanTabbar: typeof import('vant/es')['Tabbar']
     VanTabbarItem: typeof import('vant/es')['TabbarItem']
     VanTabs: typeof import('vant/es')['Tabs']
+    VanTag: typeof import('vant/es')['Tag']
   }
 }

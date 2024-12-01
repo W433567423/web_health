@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-import { default as userStore, default as useUserStore } from '@/stores/user.store';
+import useUserStore from '@/stores/user.store';
 import LoginCpn from '@m/cpns/LoginCpn.vue';
 import RegistryCpn from '@m/cpns/RegistryCpn.vue';
 import { onBeforeMount, ref } from 'vue';
@@ -38,11 +38,10 @@ const changeMethod = (method: string): void => {
 };
 
 onBeforeMount(() => {
-	userStore().init();
 	console.log('🚀 ~ onBeforeMount ~ useUserStore().token:', useUserStore().token);
 	if (useUserStore().token.startsWith('Bearer')) {
 		console.log('已登录');
-		router.push('/m/about');
+		router.push('/m/hospital');
 	}
 });
 </script>

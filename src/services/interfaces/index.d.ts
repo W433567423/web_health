@@ -21,4 +21,10 @@ interface IRequestConfig extends AxiosRequestConfig {
 }
 /** ************** end ******************/
 
-export type { IRequestConfig, IResponseConfig, IResponseData, IServerConfig };
+interface IBaseData {
+	id: number;
+	createTime: string;
+	updateTime: string;
+}
+
+export type { IBaseData, IRequestConfig, IResponseConfig, IResponseData, IServerConfig };

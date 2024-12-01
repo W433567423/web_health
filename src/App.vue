@@ -1,6 +1,7 @@
 <script lang="ts" setup>
+import useUserStore from '@/stores/user.store';
 import { isMobile, sleep } from '@/utils';
-import { computed, onMounted, ref } from 'vue';
+import { computed, onBeforeMount, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 const route = useRoute();
 const router = useRouter();
@@ -37,8 +38,8 @@ const changeTabAction = (name: string) => {
 	router.push({ name });
 };
 
-onMounted(async () => {
-	// 等待300ms
+onBeforeMount(async () => {
+	useUserStore().init();
 	await sleep(300);
 	if (isMobile()) {
 		console.log('手机端');

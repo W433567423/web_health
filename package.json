@@ -20,6 +20,7 @@
 	"dependencies": {
 		"@arco-plugins/vite-vue": "^1.4.5",
 		"@types/node": "^20.11.30",
+		"@vant/area-data": "^2.0.0",
 		"axios": "^1.6.7",
 		"dayjs": "^1.11.10",
 		"echarts": "^5.5.0",

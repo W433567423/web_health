@@ -10,7 +10,7 @@
 		<van-collapse v-model="activeNames">
 			<van-collapse-item title="医管理" :name="1">
 				<van-list>
-					<van-cell v-for="(e, i) in list1" :key="i" :title="e.title" />
+					<van-cell v-for="(e, i) in list1" :key="i" :title="e.title" @click="changePageAction(e)" />
 				</van-list>
 			</van-collapse-item>
 			<van-collapse-item title="个人设置" :name="2">
@@ -24,14 +24,19 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue';
-
+import { useRouter } from 'vue-router';
+import type { ILinkItem } from './index.d';
 const activeNames = ref([1, 2]);
-const list1 = [
+const router = useRouter();
+
+const list1: ILinkItem[] = [
 	{
-		title: '医院管理'
+		title: '医院管理',
+		url: '/m/hospital'
 	},
 	{
-		title: '医生管理'
+		title: '医生管理',
+		url: '/m/doctor'
 	}
 ];
 const list2 = [
@@ -42,6 +47,10 @@ const list2 = [
 		title: '个人检验报告单'
 	}
 ];
+
+const changePageAction = (e: ILinkItem) => {
+	router.push(e.url);
+};
 </script>
 
 <style lang="less" scoped>

@@ -14,7 +14,12 @@ const routes: RouteRecordRaw[] = [
 		children: [
 			{ path: 'login', component: MLoginPage },
 			{ path: 'home', name: 'm_home', component: async () => await import('@m/pages/HomePage.vue') },
-			{ path: 'about', name: 'm_about', component: async () => await import('@m/pages/AboutPage.vue') }
+			{ path: 'about', name: 'm_about', component: async () => await import('@m/pages/AboutPage.vue') },
+			{
+				path: 'hospital',
+				name: 'm_hospital',
+				component: async () => await import('@m/pages/HospitalPage.vue')
+			}
 			// { path: '/m/home', component: async () => await import('@m/pages/AboutPage.vue') }
 		]
 	}

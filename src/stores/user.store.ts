@@ -14,8 +14,7 @@ export default defineStore('user', {
 			user_name: '',
 			pass_word: '',
 			phone: '',
-			email: '',
-			peace: ''
+			email: ''
 		}
 	}),
 	actions: {
@@ -27,13 +26,15 @@ export default defineStore('user', {
 
 		// 设置token
 		setToken(token: string) {
+			console.log('🚀 ~ setToken ~ token:', token);
 			this.token = 'Bearer ' + token;
 			setLocalStorage('token', this.token);
 		},
 		// 设置用户信息
 		setUser(user: IUser) {
+			console.log('🚀 ~ setUser ~ user:', user);
 			this.user = user;
-			setLocalStorage('user', this.user);
+			setLocalStorage('user', JSON.stringify(this.user));
 		},
 
 		// 设置token

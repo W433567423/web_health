@@ -8,11 +8,11 @@
 	<div class="m-about-wrap">
 		<div class="h40vh bg-red"></div>
 		<van-collapse v-model="activeNames">
-			<van-collapse-item title="医管理" :name="1">
-				<van-list>
-					<van-cell v-for="(e, i) in list1" :key="i" :title="e.title" @click="changePageAction(e)" />
-				</van-list>
-			</van-collapse-item>
+			<!-- <van-collapse-item title="医管理" :name="1"> -->
+			<van-list>
+				<van-cell v-for="(e, i) in list1" :key="i" :title="e.title" @click="changePageAction(e)" />
+			</van-list>
+			<!-- </van-collapse-item> -->
 			<van-collapse-item title="个人设置" :name="2">
 				<van-list>
 					<van-cell v-for="(e, i) in list2" :key="i" :title="e.title" />
@@ -26,7 +26,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import type { ILinkItem } from './index.d';
-const activeNames = ref([1, 2]);
+const activeNames = ref([2]);
 const router = useRouter();
 
 const list1: ILinkItem[] = [

@@ -10,7 +10,11 @@
 	</div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { getExistHospitals } from '@/services/hospital.api';
+import { onBeforeMount } from 'vue';
+onBeforeMount(getExistHospitals);
+</script>
 
 <style lang="less" scoped>
 .m-hospital-wrap {

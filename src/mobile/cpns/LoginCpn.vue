@@ -21,23 +21,22 @@
 <script lang="ts" setup>
 import { type IUserLoginForm } from '@/services/interfaces/users';
 import { postUserLogin } from '@/services/users.api';
+import useUserStore from '@/stores/user.store';
 import { showNotify } from 'vant';
 import { type Ref, ref } from 'vue';
 import { useRouter } from 'vue-router';
 const loginForm: Ref<IUserLoginForm> = ref({ username: 'tutu', password: '123456', valid: 'tutu' });
 const router = useRouter();
-const loginAction = (): void => {
-	postUserLogin(loginForm.value)
-		.then((res) => {
-			showNotify({ type: 'success', message: '登录成功', duration: 1000 });
-			setTimeout(() => {
-				// 跳转到首页
-				router.push('/m/home');
-			}, 1000);
-		})
-		.catch((err) => {
-			console.log('postUserLogin', err);
-		});
+const loginAction = async () => {
+	const res = await postUserLogin(loginForm.value);
+	console.log('postUserLogin', res);
+	showNotify({ type: 'success', message: '登录成功', duration: 1000 });
+	useUserStore().setToken(res.token);
+	useUserStore().setUser(res.user);
+	setTimeout(() => {
+		// 跳转到首页
+		router.push('/m/home');
+	}, 1000);
 };
 </script>
 

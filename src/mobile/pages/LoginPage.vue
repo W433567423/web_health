@@ -17,11 +17,13 @@
 </template>
 
 <script lang="ts" setup>
+import { default as userStore, default as useUserStore } from '@/stores/user.store';
 import LoginCpn from '@m/cpns/LoginCpn.vue';
 import RegistryCpn from '@m/cpns/RegistryCpn.vue';
-import { ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
+import { useRouter } from 'vue-router';
 const isLogin = ref(true);
-
+const router = useRouter();
 const changeMethod = (method: string): void => {
 	switch (method) {
 		case 'login':
@@ -34,6 +36,15 @@ const changeMethod = (method: string): void => {
 			break;
 	}
 };
+
+onBeforeMount(() => {
+	userStore().init();
+	console.log('🚀 ~ onBeforeMount ~ useUserStore().token:', useUserStore().token);
+	if (useUserStore().token.startsWith('Bearer')) {
+		console.log('已登录');
+		router.push('/m/about');
+	}
+});
 </script>
 
 <style lang="less" scoped>

@@ -63,9 +63,7 @@ class HttpRequest {
 					return Promise.reject(new Error('Response Error! 没有code!'));
 				}
 
-				// originData参数用来获取原始响应
-				if ((res.config as IResponseConfig).originData !== null) return data;
-				else return data.data;
+				return data.data;
 			},
 			async (error: AxiosError) => {
 				let { message }: { message: string } = error;

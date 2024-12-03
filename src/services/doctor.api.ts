@@ -9,5 +9,5 @@ export const getExistDoctors = async () => {
 
 // 新增医生
 export const addDoctor = async (data: IDoctor) => {
-	return await request.post(baseUrl + `/addDoctor`, { data });
+	return await request.post<IDoctorRes[]>(baseUrl + `/addDoctor`, { data });
 };

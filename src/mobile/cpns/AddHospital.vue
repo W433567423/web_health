@@ -99,6 +99,10 @@ const address = computed(() => {
 });
 const hospitalLevel: Array<PickerColumn | PickerOption> = [
 	{
+		text: '',
+		value: '0'
+	},
+	{
 		text: '三级甲等',
 		value: '1'
 	},
@@ -111,36 +115,48 @@ const hospitalLevel: Array<PickerColumn | PickerOption> = [
 		value: '3'
 	},
 	{
-		text: '二级甲等',
+		text: '三级',
 		value: '4'
 	},
 	{
-		text: '二级乙等',
+		text: '二级甲等',
 		value: '5'
 	},
 	{
-		text: '二级丙等',
+		text: '二级乙等',
 		value: '6'
 	},
 	{
-		text: '一级甲等',
+		text: '二级丙等',
 		value: '7'
 	},
 	{
-		text: '一级乙等',
+		text: '二级',
 		value: '8'
 	},
 	{
-		text: '一级丙等',
+		text: '一级甲等',
 		value: '9'
 	},
 	{
-		text: '社区中心卫生所',
+		text: '一级乙等',
+		value: '10'
+	},
+	{
+		text: '一级丙等',
 		value: '11'
 	},
 	{
-		text: '社区卫生所',
+		text: '一级',
 		value: '12'
+	},
+	{
+		text: '社区中心卫生所',
+		value: '13'
+	},
+	{
+		text: '社区卫生所',
+		value: '14'
 	}
 ];
 const hospitalNature = [

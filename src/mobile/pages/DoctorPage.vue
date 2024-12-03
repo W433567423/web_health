@@ -12,8 +12,8 @@
 			:key="e.id"
 			:title="e.doctorName"
 			value="修改"
-			:label="e.hospitalId"
-			:title-style="{ flex: 2 }" />
+			:label="getHospitalName(e.hospitalId)"
+			:title-style="{ flex: 2, overflow: 'hidden', textWrap: 'nowrap', textOverflow: 'ellipsis' }" />
 	</van-list>
 	<van-empty v-if="!doctorList?.length" description="暂无医生" />
 	<div class="m-doctor-wrap">
@@ -25,17 +25,21 @@
 </template>
 
 <script lang="ts" setup>
-import { getExistDoctors } from '@/services/doctor.api';
-import { type IDoctorRes } from '@/services/interfaces/doctor';
-import { onBeforeMount, ref } from 'vue';
+import useDoctorStore from '@/stores/doctor.store';
+import useHospitalStore from '@/stores/hospital.store';
+import { computed, onBeforeMount } from 'vue';
 import { useRouter } from 'vue-router';
 import AddDoctor from '../cpns/AddDoctor.vue';
+
 const router = useRouter();
-const doctorList = ref<IDoctorRes[]>([]);
-onBeforeMount(async () => {
-	const res = await getExistDoctors();
-	doctorList.value = res;
+const doctorList = computed(() => {
+	useDoctorStore().init();
+	return useDoctorStore().doctorList;
 });
+const getHospitalName = (id: number) =>
+	useHospitalStore().hospitalList.find((e) => e.id === id)?.hospitalName ?? '出错了';
+
+onBeforeMount(async () => {});
 const backPageAction = () => {
 	router.back();
 };

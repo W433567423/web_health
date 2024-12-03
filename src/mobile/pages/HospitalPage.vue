@@ -13,7 +13,7 @@
 			:title="e.hospitalName"
 			:value="e.level"
 			:label="getAddressFromCode(e.addressCode)"
-			:title-style="{ flex: 2 }" />
+			:title-style="{ flex: 2, overflow: 'hidden', textWrap: 'nowrap', textOverflow: 'ellipsis' }" />
 	</van-list>
 	<!-- <van-empty v-if="!hospitalList?.length" description="暂无医院" /> -->
 	<div class="m-hospital-wrap">
@@ -32,7 +32,10 @@ import { useRouter } from 'vue-router';
 import AddHospital from '../cpns/AddHospital.vue';
 
 const router = useRouter();
-const hospitalList = computed(() => useHospitalStore().hospitalList);
+const hospitalList = computed(() => {
+	useHospitalStore().init();
+	return useHospitalStore().hospitalList;
+});
 
 const backPageAction = () => {
 	router.back();

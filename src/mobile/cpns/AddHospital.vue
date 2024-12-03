@@ -6,7 +6,7 @@
 -->
 <template>
 	<div class="m-add-hospital-wrap">
-		<van-form v-model="addHospitalForm">
+		<van-form v-model="addHospitalForm" @submit="addHospitalAction">
 			<van-space direction="vertical" fill>
 				<van-field
 					v-model="addHospitalForm.hospitalName"
@@ -61,11 +61,9 @@
 						v-model="addHospitalForm.addressCode"
 						title="请选择所在地区"
 						:options="options"
-						@close="show = false" />
+						@close="chooseAddressAction" />
 				</van-popup>
-				<van-button round block type="primary" native-type="submit" @click="addHospitalAction">
-					添加医院
-				</van-button>
+				<van-button round block type="primary" native-type="submit">添加医院</van-button>
 			</van-space>
 		</van-form>
 	</div>
@@ -167,6 +165,10 @@ const chooseLevelAction = ({ selectedOptions }: { selectedOptions: PickerOption[
 const chooseNatureAction = ({ selectedOptions }: { selectedOptions: PickerOption[] }) => {
 	addHospitalForm.value.nature = selectedOptions[0].text as string;
 	showNaturePicker.value = false;
+};
+const chooseAddressAction = () => {
+	show.value = false;
+	console.log('🚀 ~ chooseAddressAction ~ addressCode:', addHospitalForm.value.addressCode);
 };
 const addHospitalAction = async () => {
 	console.log('🚀 ~ addHospitalAction ~ addHospitalForm.value:', addHospitalForm.value);

@@ -14,7 +14,7 @@
 			:label="getAddressFromCode(e.addressCode)"
 			:title-style="{ flex: 2 }" />
 	</van-list>
-	<van-empty v-if="!hospitalList.length" description="暂无医院" />
+	<!-- <van-empty v-if="!hospitalList?.length" description="暂无医院" /> -->
 	<div class="m-hospital-wrap">
 		<div v-if="hospitalList.length"></div>
 		<van-floating-panel>

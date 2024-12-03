@@ -26,5 +26,8 @@ interface IBaseData {
 	createTime: string;
 	updateTime: string;
 }
+interface IBaseUseIdData extends IBaseData {
+	userId: number;
+}
 
-export type { IBaseData, IRequestConfig, IResponseConfig, IResponseData, IServerConfig };
+export type { IBaseData, IBaseUseIdData, IRequestConfig, IResponseConfig, IResponseData, IServerConfig };

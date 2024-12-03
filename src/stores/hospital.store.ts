@@ -9,6 +9,7 @@ export default defineStore('hospital', {
 	actions: {
 		// 初始化
 		init() {
+			console.log('🚀 ~ init ~ hospital store');
 			this.hospitalList = getLocalStorage('hospitalList');
 		},
 

@@ -19,7 +19,7 @@
 	<div class="m-doctor-wrap">
 		<div v-if="doctorList.length"></div>
 		<van-floating-panel>
-			<AddDoctor @add-Doctor-emit="addDoctorAction" />
+			<AddDoctor />
 		</van-floating-panel>
 	</div>
 </template>
@@ -38,9 +38,6 @@ onBeforeMount(async () => {
 });
 const backPageAction = () => {
 	router.back();
-};
-const addDoctorAction = async (Doctors: IDoctorRes[]) => {
-	doctorList.value = Doctors;
 };
 </script>
 

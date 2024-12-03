@@ -174,7 +174,7 @@ const addHospitalAction = async () => {
 	console.log('🚀 ~ addHospitalAction ~ addHospitalForm.value:', addHospitalForm.value);
 	const res = await addHospital(addHospitalForm.value);
 	useHospitalStore().setHospitalList(res);
-	showNotify({ type: 'success', message: '医院增加成功', duration: 1000 });
+	showNotify({ type: 'success', message: '医院增加成功', duration: 2000 });
 };
 </script>
 

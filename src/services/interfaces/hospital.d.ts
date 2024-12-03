@@ -1,4 +1,4 @@
-import type { IBaseData } from './index.d';
+import type { IBaseUseIdData } from './index.d';
 interface IHospital {
 	hospitalName: string;
 	level: string;
@@ -6,5 +6,5 @@ interface IHospital {
 	nature?: string;
 	addressCode: string;
 }
-type IHospitalRes = IHospital & IBaseData;
+type IHospitalRes = IHospital & IBaseUseIdData;
 export type { IHospital, IHospitalRes };

@@ -10,10 +10,28 @@
 		<van-cell
 			v-for="e in hospitalList"
 			:key="e.id"
-			:title="e.hospitalName"
-			:value="e.level"
-			:label="getAddressFromCode(e.addressCode)"
-			:title-style="{ flex: 2, overflow: 'hidden', textWrap: 'nowrap', textOverflow: 'ellipsis' }" />
+			:title-style="{
+				flex: 3,
+				overflow: 'hidden',
+				textWrap: 'nowrap',
+				textOverflow: 'ellipsis'
+			}">
+			<template #title>
+				<div>
+					<van-tag type="primary">{{ e.nature }}</van-tag>
+					{{ e.hospitalName }}
+				</div>
+			</template>
+			<template #right-icon>
+				<div>操作</div>
+			</template>
+			<template #label>
+				<div>
+					{{ getAddressFromCode(e.addressCode) }}
+					<van-tag type="primary" plain>{{ e.level }}</van-tag>
+				</div>
+			</template>
+		</van-cell>
 	</van-list>
 	<!-- <van-empty v-if="!hospitalList?.length" description="暂无医院" /> -->
 	<div class="m-hospital-wrap">

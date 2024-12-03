@@ -1,4 +1,5 @@
 export interface ILinkItem {
 	title: string;
-	url: string;
+	to: string;
+	icon: string;
 }

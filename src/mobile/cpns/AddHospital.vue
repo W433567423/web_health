@@ -103,15 +103,15 @@ const hospitalLevel: Array<PickerColumn | PickerOption> = [
 		value: '0'
 	},
 	{
-		text: '三级甲等',
+		text: '三甲',
 		value: '1'
 	},
 	{
-		text: '三级乙等',
+		text: '三乙',
 		value: '2'
 	},
 	{
-		text: '三级丙等',
+		text: '三丙',
 		value: '3'
 	},
 	{
@@ -119,15 +119,15 @@ const hospitalLevel: Array<PickerColumn | PickerOption> = [
 		value: '4'
 	},
 	{
-		text: '二级甲等',
+		text: '二甲',
 		value: '5'
 	},
 	{
-		text: '二级乙等',
+		text: '二乙',
 		value: '6'
 	},
 	{
-		text: '二级丙等',
+		text: '二丙',
 		value: '7'
 	},
 	{
@@ -135,27 +135,11 @@ const hospitalLevel: Array<PickerColumn | PickerOption> = [
 		value: '8'
 	},
 	{
-		text: '一级甲等',
-		value: '9'
-	},
-	{
-		text: '一级乙等',
-		value: '10'
-	},
-	{
-		text: '一级丙等',
-		value: '11'
-	},
-	{
-		text: '一级',
-		value: '12'
-	},
-	{
-		text: '社区中心卫生所',
+		text: '中心卫生所',
 		value: '13'
 	},
 	{
-		text: '社区卫生所',
+		text: '卫生所',
 		value: '14'
 	}
 ];

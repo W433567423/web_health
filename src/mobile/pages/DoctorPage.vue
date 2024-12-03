@@ -8,40 +8,39 @@
 	<van-nav-bar title="医生管理" left-text="返回" left-arrow @click-left="backPageAction" />
 	<van-list>
 		<van-cell
-			v-for="e in hospitalList"
+			v-for="e in doctorList"
 			:key="e.id"
-			:title="e.hospitalName"
-			:value="e.level"
-			:label="getAddressFromCode(e.addressCode)"
+			:title="e.doctorName"
+			value="修改"
+			:label="e.hospitalId"
 			:title-style="{ flex: 2 }" />
 	</van-list>
-	<!-- <van-empty v-if="!hospitalList?.length" description="暂无医院" /> -->
+	<van-empty v-if="!doctorList?.length" description="暂无医生" />
 	<div class="m-doctor-wrap">
-		<div v-if="hospitalList.length"></div>
+		<div v-if="doctorList.length"></div>
 		<van-floating-panel>
-			<AddHospital @add-hospital-emit="addHospitalAction" />
+			<AddDoctor @add-Doctor-emit="addDoctorAction" />
 		</van-floating-panel>
 	</div>
 </template>
 
 <script lang="ts" setup>
-import { getExistHospitals } from '@/services/hospital.api';
-import { type IHospitalRes } from '@/services/interfaces/hospital';
-import { getAddressFromCode } from '@/utils';
+import { getExistDoctors } from '@/services/doctor.api';
+import { type IDoctorRes } from '@/services/interfaces/doctor';
 import { onBeforeMount, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import AddHospital from '../cpns/AddHospital.vue';
+import AddDoctor from '../cpns/AddDoctor.vue';
 const router = useRouter();
-const hospitalList = ref<IHospitalRes[]>([]);
+const doctorList = ref<IDoctorRes[]>([]);
 onBeforeMount(async () => {
-	const res = await getExistHospitals();
-	hospitalList.value = res;
+	const res = await getExistDoctors();
+	doctorList.value = res;
 });
 const backPageAction = () => {
 	router.back();
 };
-const addHospitalAction = async (hospitals: IHospitalRes[]) => {
-	hospitalList.value = hospitals;
+const addDoctorAction = async (Doctors: IDoctorRes[]) => {
+	doctorList.value = Doctors;
 };
 </script>
 

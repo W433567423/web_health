@@ -72,6 +72,7 @@
 <script lang="ts" setup>
 import { addHospital } from '@/services/hospital.api';
 import { type IHospital } from '@/services/interfaces/hospital';
+import useHospitalStore from '@/stores/hospital.store';
 import { getAddressFromCode } from '@/utils';
 import { useCascaderAreaData } from '@vant/area-data';
 import { showNotify, type PickerColumn, type PickerOption } from 'vant';
@@ -89,7 +90,6 @@ const addHospitalForm = ref<IHospital>({
 	level: '社区卫生所',
 	nature: '未知'
 });
-const emits = defineEmits(['addHospitalEmit']);
 const address = computed(() => {
 	if (addHospitalForm.value.addressCode === '') {
 		return '';
@@ -173,8 +173,8 @@ const chooseAddressAction = () => {
 const addHospitalAction = async () => {
 	console.log('🚀 ~ addHospitalAction ~ addHospitalForm.value:', addHospitalForm.value);
 	const res = await addHospital(addHospitalForm.value);
+	useHospitalStore().setHospitalList(res);
 	showNotify({ type: 'success', message: '医院增加成功', duration: 1000 });
-	emits('addHospitalEmit', res);
 };
 </script>
 

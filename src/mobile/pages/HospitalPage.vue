@@ -19,29 +19,23 @@
 	<div class="m-hospital-wrap">
 		<div v-if="hospitalList.length"></div>
 		<van-floating-panel>
-			<AddHospital @add-hospital-emit="addHospitalAction" />
+			<AddHospital />
 		</van-floating-panel>
 	</div>
 </template>
 
 <script lang="ts" setup>
-import { getExistHospitals } from '@/services/hospital.api';
-import { type IHospitalRes } from '@/services/interfaces/hospital';
+import useHospitalStore from '@/stores/hospital.store';
 import { getAddressFromCode } from '@/utils';
-import { onBeforeMount, ref } from 'vue';
+import { computed } from 'vue';
 import { useRouter } from 'vue-router';
 import AddHospital from '../cpns/AddHospital.vue';
+
 const router = useRouter();
-const hospitalList = ref<IHospitalRes[]>([]);
-onBeforeMount(async () => {
-	const res = await getExistHospitals();
-	hospitalList.value = res;
-});
+const hospitalList = computed(() => useHospitalStore().hospitalList);
+
 const backPageAction = () => {
 	router.back();
-};
-const addHospitalAction = async (hospitals: IHospitalRes[]) => {
-	hospitalList.value = hospitals;
 };
 </script>
 

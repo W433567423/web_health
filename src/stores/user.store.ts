@@ -3,7 +3,6 @@ import { getLocalStorage, setLocalStorage } from '@/utils';
 import { removeLocalStorage } from '@/utils/storage.util.ts';
 import { defineStore } from 'pinia';
 
-// 第一个参数必须是全局唯一，可以是哟
 export default defineStore('user', {
 	state: (): { token: string; user: IUser } => ({
 		token: '',
@@ -37,7 +36,7 @@ export default defineStore('user', {
 			setLocalStorage('user', JSON.stringify(this.user));
 		},
 
-		// 设置token
+		// 清除token
 		clearToken() {
 			this.token = '';
 			// 清除缓存

@@ -9,5 +9,5 @@ export const getExistHospitals = async () => {
 
 // 新增医院
 export const addHospital = async (data: IHospital) => {
-	return await request.post(baseUrl + `/addHospital`, { data });
+	return await request.post<IHospitalRes[]>(baseUrl + `/addHospital`, { data });
 };

@@ -23,7 +23,9 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { getExistHospitals } from '@/services/hospital.api';
+import useHospitalStore from '@/stores/hospital.store';
+import { onBeforeMount, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import type { ILinkItem } from './index.d';
 const activeNames = ref([2]);
@@ -51,6 +53,10 @@ const list2 = [
 const changePageAction = (e: ILinkItem) => {
 	router.push(e.url);
 };
+onBeforeMount(async () => {
+	const res = await getExistHospitals();
+	useHospitalStore().setHospitalList(res);
+});
 </script>
 
 <style lang="less" scoped>

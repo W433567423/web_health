@@ -41,7 +41,7 @@ onBeforeMount(() => {
 	console.log('🚀 ~ onBeforeMount ~ useUserStore().token:', useUserStore().token);
 	if (useUserStore().token.startsWith('Bearer')) {
 		console.log('已登录');
-		router.push('/m/hospital');
+		router.push('/m/about');
 	}
 });
 </script>

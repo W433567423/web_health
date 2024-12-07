@@ -9,13 +9,11 @@ export default defineStore('doctor', {
 	actions: {
 		// 初始化
 		init() {
-			console.log('🚀 ~ init ~ doctor store');
 			this.doctorList = getLocalStorage('DoctorList');
 		},
 
 		// DoctorList
 		setDoctorList(list: IDoctorRes[]) {
-			console.log('🚀 ~ setDoctorList ~ list:', list);
 			this.doctorList = list;
 			setLocalStorage('DoctorList', JSON.stringify(this.doctorList));
 		}

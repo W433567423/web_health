@@ -25,13 +25,11 @@ export default defineStore('user', {
 
 		// 设置token
 		setToken(token: string) {
-			console.log('🚀 ~ setToken ~ token:', token);
 			this.token = 'Bearer ' + token;
 			setLocalStorage('token', this.token);
 		},
 		// 设置用户信息
 		setUser(user: IUser) {
-			console.log('🚀 ~ setUser ~ user:', user);
 			this.user = user;
 			setLocalStorage('user', JSON.stringify(this.user));
 		},

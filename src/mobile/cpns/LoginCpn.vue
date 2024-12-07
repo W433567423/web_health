@@ -5,7 +5,7 @@
 * @time: 2024-11-17 15:07:01
 -->
 <template>
-	<div class="test-wrap">
+	<div class="m-login-wrap">
 		<!-- 登录 -->
 		<van-form v-model="loginForm">
 			<van-space direction="vertical" fill>
@@ -29,7 +29,6 @@ const loginForm: Ref<IUserLoginForm> = ref({ username: 'tutu', password: '123456
 const router = useRouter();
 const loginAction = async () => {
 	const res = await postUserLogin(loginForm.value);
-	console.log('postUserLogin', res);
 	showNotify({ type: 'success', message: '登录成功', duration: 1000 });
 	useUserStore().setToken(res.token);
 	useUserStore().setUser(res.user);
@@ -41,6 +40,6 @@ const loginAction = async () => {
 </script>
 
 <style lang="less" scoped>
-.test-wrap {
+.m-login-wrap {
 }
 </style>

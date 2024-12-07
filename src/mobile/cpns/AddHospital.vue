@@ -103,43 +103,43 @@ const hospitalLevel: Array<PickerColumn | PickerOption> = [
 		value: '0'
 	},
 	{
-		text: '三甲',
+		text: '三甲医院',
 		value: '1'
 	},
 	{
-		text: '三乙',
+		text: '三乙医院',
 		value: '2'
 	},
 	{
-		text: '三丙',
+		text: '三丙医院',
 		value: '3'
 	},
 	{
-		text: '三级',
+		text: '三级医院',
 		value: '4'
 	},
 	{
-		text: '二甲',
+		text: '二甲医院',
 		value: '5'
 	},
 	{
-		text: '二乙',
+		text: '二乙医院',
 		value: '6'
 	},
 	{
-		text: '二丙',
+		text: '二丙医院',
 		value: '7'
 	},
 	{
-		text: '二级',
+		text: '二级医院',
 		value: '8'
 	},
 	{
-		text: '中心卫生所',
+		text: '社区中心',
 		value: '13'
 	},
 	{
-		text: '卫生所',
+		text: '社区卫生所',
 		value: '14'
 	}
 ];

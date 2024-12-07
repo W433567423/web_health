@@ -7,33 +7,36 @@
 <template>
 	<div class="m-hospital-wrap">
 		<van-nav-bar title="医院管理" left-text="返回" left-arrow @click-left="backPageAction" />
-		<van-list>
+		<van-swipe-cell v-for="e in hospitalList" :key="e.id">
 			<van-cell
-				v-for="e in hospitalList"
-				:key="e.id"
 				:title-style="{
-					flex: 3,
+					flex: 2,
 					overflow: 'hidden',
 					textWrap: 'nowrap',
 					textOverflow: 'ellipsis'
 				}">
 				<template #title>
-					<div>
-						<van-tag type="primary">{{ e.nature }}</van-tag>
-						{{ e.hospitalName }}
-					</div>
-				</template>
-				<template #right-icon>
-					<van-button @click="clickChangeAction(e)">修改</van-button>
+					{{ e.hospitalName }}
 				</template>
 				<template #label>
 					<div>
+						<van-tag type="primary">{{ e.nature }}</van-tag>
 						{{ getAddressFromCode(e.addressCode) }}
-						<van-tag type="primary" plain>{{ e.level }}</van-tag>
+					</div>
+				</template>
+				<template #right-icon>
+					<div class="flex flex-col justify-center">
+						<van-tag size="large" type="primary" plain>{{ e.level }}</van-tag>
 					</div>
 				</template>
 			</van-cell>
-		</van-list>
+			<template #right>
+				<div class="flex flex-items-center h100%">
+					<van-button square type="warning" @click="clickChangeAction(e)">修改</van-button>
+					<van-button square type="danger" @click="clickDeleteAction(e)">删除</van-button>
+				</div>
+			</template>
+		</van-swipe-cell>
 		<!-- <van-empty v-if="!hospitalList?.length" description="暂无医院" /> -->
 		<div v-if="hospitalList.length"></div>
 		<van-dialog v-model:show="showChangeDialog" title="修改医院信息" show-cancel-button>
@@ -65,6 +68,9 @@ const clickChangeAction = (e: IHospitalRes) => {
 	showChangeDialog.value = true;
 };
 
+const clickDeleteAction = (e: IHospitalRes) => {
+	console.log('🚀 ~ clickDeleteAction ~ e:', e);
+};
 const backPageAction = () => {
 	router.back();
 };

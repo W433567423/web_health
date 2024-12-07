@@ -6,15 +6,18 @@
 -->
 <template>
 	<van-nav-bar title="医生管理" left-text="返回" left-arrow @click-left="backPageAction" />
-	<van-list>
+	<van-swipe-cell v-for="e in doctorList" :key="e.id">
 		<van-cell
-			v-for="e in doctorList"
-			:key="e.id"
 			:title="e.doctorName"
-			value="修改"
 			:label="getHospitalName(e.hospitalId)"
 			:title-style="{ flex: 2, overflow: 'hidden', textWrap: 'nowrap', textOverflow: 'ellipsis' }" />
-	</van-list>
+		<template #right>
+			<div class="flex flex-items-center h100%">
+				<van-button square type="warning" @click="clickChangeAction(e)">修改</van-button>
+				<van-button square type="danger" @click="clickDeleteAction(e)">删除</van-button>
+			</div>
+		</template>
+	</van-swipe-cell>
 	<van-empty v-if="!doctorList?.length" description="暂无医生" />
 	<div class="m-doctor-wrap">
 		<div v-if="doctorList.length"></div>
@@ -25,6 +28,7 @@
 </template>
 
 <script lang="ts" setup>
+import { type IDoctorRes } from '@/services/interfaces/doctor';
 import useDoctorStore from '@/stores/doctor.store';
 import useHospitalStore from '@/stores/hospital.store';
 import { computed, onBeforeMount } from 'vue';
@@ -39,6 +43,12 @@ const doctorList = computed(() => {
 const getHospitalName = (id: number) =>
 	useHospitalStore().hospitalList.find((e) => e.id === id)?.hospitalName ?? '出错了';
 
+const clickChangeAction = (e: IDoctorRes) => {
+	console.log('🚀 ~ clickChangeAction ~ e:', e);
+};
+const clickDeleteAction = (e: IDoctorRes) => {
+	console.log('🚀 ~ clickDeleteAction ~ e:', e);
+};
 onBeforeMount(async () => {});
 const backPageAction = () => {
 	router.back();

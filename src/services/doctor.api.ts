@@ -13,6 +13,6 @@ export const addDoctorApi = async (data: IDoctor) => {
 };
 
 // 删除医生
-export const deleteDoctorApi = async (id: string) => {
+export const deleteDoctorApi = async (id: number) => {
 	return await request.delete<IDoctorRes[]>(baseUrl + `/deleteDoctor/${id}`);
 };

@@ -13,6 +13,6 @@ export const addHospitalApi = async (data: IHospital) => {
 };
 
 // 删除医院
-export const deleteHospitalApi = async (id: string) => {
+export const deleteHospitalApi = async (id: number) => {
 	return await request.delete<IHospitalRes[]>(baseUrl + `/deleteHospital/${id}`);
 };

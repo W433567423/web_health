@@ -28,9 +28,11 @@
 </template>
 
 <script lang="ts" setup>
+import { deleteDoctorApi } from '@/services/doctor.api';
 import { type IDoctorRes } from '@/services/interfaces/doctor';
 import useDoctorStore from '@/stores/doctor.store';
 import useHospitalStore from '@/stores/hospital.store';
+import { showNotify } from 'vant';
 import { computed, onBeforeMount } from 'vue';
 import { useRouter } from 'vue-router';
 import AddDoctor from '../cpns/AddDoctor.vue';
@@ -46,8 +48,11 @@ const getHospitalName = (id: number) =>
 const clickChangeAction = (e: IDoctorRes) => {
 	console.log('🚀 ~ clickChangeAction ~ e:', e);
 };
-const clickDeleteAction = (e: IDoctorRes) => {
+const clickDeleteAction = async (e: IDoctorRes) => {
 	console.log('🚀 ~ clickDeleteAction ~ e:', e);
+	const res = await deleteDoctorApi(e.id);
+	useDoctorStore().setDoctorList(res);
+	showNotify({ type: 'success', message: '删除成功' });
 };
 onBeforeMount(async () => {});
 const backPageAction = () => {

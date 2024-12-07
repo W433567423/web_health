@@ -49,9 +49,11 @@
 </template>
 
 <script lang="ts" setup>
+import { deleteHospitalApi } from '@/services/hospital.api';
 import { type IHospitalRes } from '@/services/interfaces/hospital';
 import useHospitalStore from '@/stores/hospital.store';
 import { getAddressFromCode } from '@/utils';
+import { showNotify } from 'vant';
 import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import AddHospital from '../cpns/AddHospital.vue';
@@ -68,8 +70,11 @@ const clickChangeAction = (e: IHospitalRes) => {
 	showChangeDialog.value = true;
 };
 
-const clickDeleteAction = (e: IHospitalRes) => {
+const clickDeleteAction = async (e: IHospitalRes) => {
 	console.log('🚀 ~ clickDeleteAction ~ e:', e);
+	const res = await deleteHospitalApi(e.id);
+	useHospitalStore().setHospitalList(res);
+	showNotify({ type: 'success', message: '删除医院成功' });
 };
 const backPageAction = () => {
 	router.back();

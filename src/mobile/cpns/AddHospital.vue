@@ -70,7 +70,7 @@
 </template>
 
 <script lang="ts" setup>
-import { addHospital } from '@/services/hospital.api';
+import { addHospitalApi } from '@/services/hospital.api';
 import { type IHospital } from '@/services/interfaces/hospital';
 import useHospitalStore from '@/stores/hospital.store';
 import { getAddressFromCode } from '@/utils';
@@ -172,7 +172,7 @@ const chooseAddressAction = () => {
 };
 const addHospitalAction = async () => {
 	console.log('🚀 ~ addHospitalAction ~ addHospitalForm.value:', addHospitalForm.value);
-	const res = await addHospital(addHospitalForm.value);
+	const res = await addHospitalApi(addHospitalForm.value);
 	useHospitalStore().setHospitalList(res);
 	showNotify({ type: 'success', message: '医院增加成功', duration: 2000 });
 };

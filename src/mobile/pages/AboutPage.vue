@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts" setup>
-import { getExistHospitals } from '@/services/hospital.api';
+import { getExistHospitalsApi } from '@/services/hospital.api';
 import useHospitalStore from '@/stores/hospital.store';
 import { onBeforeMount } from 'vue';
 import type { ILinkItem } from './index.d';
@@ -55,7 +55,7 @@ const list1: ILinkItem[] = [
 ];
 
 onBeforeMount(async () => {
-	const res = await getExistHospitals();
+	const res = await getExistHospitalsApi();
 	useHospitalStore().setHospitalList(res);
 });
 </script>

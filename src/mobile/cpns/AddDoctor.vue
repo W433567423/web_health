@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts" setup>
-import { addDoctor } from '@/services/doctor.api';
+import { addDoctorApi } from '@/services/doctor.api';
 import { type IDoctor } from '@/services/interfaces/doctor';
 import useDoctorStore from '@/stores/doctor.store';
 import useHospitalStore from '@/stores/hospital.store';
@@ -66,7 +66,7 @@ const chooseHospitalAction = ({ selectedOptions }: { selectedOptions: PickerOpti
 };
 const addDoctorAction = async () => {
 	console.log('🚀 ~ addDoctorAction ~ addDoctorForm.value:', addDoctorForm.value);
-	const res = await addDoctor(addDoctorForm.value);
+	const res = await addDoctorApi(addDoctorForm.value);
 	useDoctorStore().setDoctorList(res);
 	showNotify({ type: 'success', message: '医生增加成功', duration: 2000 });
 };

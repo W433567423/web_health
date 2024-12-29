@@ -16,6 +16,11 @@ const tabList = [
 		icon: 'home-o',
 		text: '首页'
 	},
+	{
+		name: 'm_add',
+		icon: 'add',
+		text: '添加指标'
+	},
 	// {
 	// 	name: 'm_search',
 	// 	icon: 'search',
@@ -66,7 +71,7 @@ onBeforeMount(async () => {
 			@click="changeTabAction(e.name)"
 			:key="i"
 			:name="e.name">
-			首页
+			{{ e.text }}
 		</van-tabbar-item>
 		<!-- <van-tabbar-item icon="search">标签</van-tabbar-item>
 		<van-tabbar-item icon="friends-o">标签</van-tabbar-item>

@@ -9,7 +9,7 @@ const router = useRouter();
 // userStore.init();
 
 const notLogin = computed(() => !route.path.includes('/login'));
-const activePage = ref('home');
+const activePage = ref('m_home');
 const tabList = [
 	{
 		name: 'm_home',

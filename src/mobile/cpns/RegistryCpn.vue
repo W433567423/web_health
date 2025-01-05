@@ -26,22 +26,21 @@
 <script lang="ts" setup>
 import type { IUserRegistryForm } from '@/services/interfaces/users';
 import { postUserRegistry } from '@/services/users.api';
+import useUserStore from '@/stores/user.store';
 import { type Ref, ref } from 'vue';
+import { useRouter } from 'vue-router';
 const RegistryForm: Ref<IUserRegistryForm> = ref({
 	username: 'tutu',
 	password: '123456',
 	email: 't433567423@163.com',
 	emailValid: 333333
 });
-const registryAction = (): void => {
+const registryAction = async () => {
 	console.log('registryAction', RegistryForm.value);
-	postUserRegistry(RegistryForm.value)
-		.then((res) => {
-			console.log('postUserLogin', res);
-		})
-		.catch((err) => {
-			console.log('postUserLogin', err);
-		});
+	const res = await postUserRegistry(RegistryForm.value);
+	useUserStore().setToken(res.token);
+	useUserStore().setUser(res.user);
+	await useRouter().replace('/m/home');
 };
 </script>
 

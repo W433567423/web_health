@@ -9,7 +9,7 @@ import type { IRequestConfig, IResponseConfig, IResponseData } from './interface
 import { createAxiosConfig } from '@/config/axios.config';
 import router from '@/router';
 import useUserStore from '@/stores/user.store';
-import { getLocalStorage } from '@/utils';
+import { getLocalStorage, isMobile } from '@/utils';
 import { Message } from '@arco-design/web-vue';
 
 class HttpRequest {
@@ -88,7 +88,7 @@ class HttpRequest {
 			console.log('登录状态已过期');
 			useUserStore().clearToken();
 			void router.replace({
-				path: '/pc-login',
+				path: isMobile() ? '/m-login' : '/pc-login',
 				query: { redirect: router.currentRoute.value.fullPath }
 			});
 		} else if (code > 299) {

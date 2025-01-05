@@ -34,7 +34,7 @@ const loginAction = async () => {
 	useUserStore().setUser(res.user);
 	setTimeout(() => {
 		// 跳转到首页
-		router.push('/m/home');
+		router.replace('/m/home');
 	}, 1000);
 };
 </script>

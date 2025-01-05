@@ -1,15 +1,13 @@
 <script lang="ts" setup>
 import useUserStore from '@/stores/user.store';
 import { isMobile, sleep } from '@/utils';
-import { computed, onBeforeMount, ref } from 'vue';
+import { computed, onBeforeMount } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 const route = useRoute();
 const router = useRouter();
-// const userStore = useUserStore();
-// userStore.init();
 
 const notLogin = computed(() => !route.path.includes('/login'));
-const activePage = ref('m_home');
+const activePage = computed(() => route.name as string);
 const tabList = [
 	{
 		name: 'm_home',
@@ -39,7 +37,6 @@ const tabList = [
 ];
 
 const changeTabAction = (name: string) => {
-	activePage.value = name;
 	router.push({ name });
 };
 

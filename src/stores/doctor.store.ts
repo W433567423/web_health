@@ -14,6 +14,7 @@ export default defineStore('doctor', {
 
 		// DoctorList
 		setDoctorList(list: IDoctorRes[]) {
+			if (!Array.isArray(list)) return;
 			this.doctorList = list;
 			setLocalStorage('DoctorList', JSON.stringify(this.doctorList));
 		}

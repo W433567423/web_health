@@ -60,7 +60,9 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-	<router-view />
+	<div class="m-wrap">
+		<router-view />
+	</div>
 	<van-tabbar v-model="activePage" v-if="notLogin">
 		<van-tabbar-item
 			:icon="e.icon"
@@ -77,4 +79,12 @@ onBeforeMount(async () => {
 	</van-tabbar>
 </template>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.m-wrap {
+	height: calc(100vh - 50px);
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	overflow: auto;
+}
+</style>

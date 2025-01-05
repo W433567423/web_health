@@ -9,7 +9,9 @@ export default defineStore('hospital', {
 	actions: {
 		// 初始化
 		init() {
-			this.hospitalList = getLocalStorage('hospitalList');
+			const isArray = Array.isArray(getLocalStorage('hospitalList'));
+			if (isArray) this.hospitalList = getLocalStorage('hospitalList');
+			else this.hospitalList = [];
 		},
 
 		// hospitalList
